@@ -6,5 +6,6 @@ interface PodcastsProps {
 
 export const Podcasts = ({ id = '' }: PodcastsProps) => {
 
-  return (<div>Podcasts🥩</div>)
+  
+  return (<div className="text-3xl font-bold underline bg-primary-300" >{`Podcasts🥩 ${id}`}</div>)
 }

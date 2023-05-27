@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Podcasts } from './components/Podcasts'
 import { Podcast } from './components/Podcast'
 import { Episode } from './components/Episode'
+import './index.css'
 
 
 const router = createBrowserRouter([
