@@ -17,12 +17,14 @@ export const usePodcasts = () : Podcast[] => {
       if(isPodcastInLocalStorageValid()){
         const podcastsStored = getValue(LocalStorageKeys.Podcasts)
         setPodcasts(podcastsStored as Podcast[]) 
-      }
+        
+      }else{
       
       try{
         const response = await fetch(URL);
         const newPodcasts = await response.json();
         const newPodcastsParsed = newPodcasts.feed.entry
+        console.log("🚀 ~ file: usePodcasts.tsx:26 ~ fetchPodcasts ~ newPodcastsParsed:", newPodcastsParsed)
 
         setValue(LocalStorageKeys.Podcasts, parsePodcasts(newPodcastsParsed))
         setPodcasts(getValue(LocalStorageKeys.Podcasts) as Podcast[])
@@ -32,9 +34,9 @@ export const usePodcasts = () : Podcast[] => {
       console.log(error)
     }
   }
+  }
   fetchPodcasts()
 }, [])
-
 return podcasts
 }
 
