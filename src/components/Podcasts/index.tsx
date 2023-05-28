@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import { usePodcasts } from "../../hooks/usePodcasts";
 import { PodcastItem } from "../PodcastItem";
 import { Podcast } from "../../utils/Podcast";
+import { Header } from "../Header";
+import { Link } from "react-router-dom";
 
 
 
@@ -23,9 +25,7 @@ export const Podcasts = () => {
 
   return (
     <div className="flex flex-col items-center w-full gap-4 font-chakra">
-        <div className=" flex items-center pl-2 text-xl font-bold w-7/12 h-8 mt-10 shadow-md text-primary-300 bg-zinc-50">
-          <p>Podcasts</p>
-        </div>
+        <Header/>
         <div className=" flex flex-row items-center justify-end w-7/12" >
           <div className="bg-primary-300 rounded-lg text-white px-1 font-medium h-6 mr-4">
             {podcastsFiltered.length}
@@ -39,7 +39,9 @@ export const Podcasts = () => {
           <div className="grid gap-x-9 gap-y-16 grid-cols-2 sm:grid-cols-4 ">
             {
             podcastsFiltered && podcastsFiltered.map((podcast )=>
-            <PodcastItem key={`podCast_${podcast.id}`}  podcast={podcast}/>
+            <Link className=" cursor-pointer" to={`/podcast/${podcast.id}`}>
+              <PodcastItem key={`podCast_${podcast.id}`}  podcast={podcast}/>
+              </Link>
             )}
           </div>
           </div>
