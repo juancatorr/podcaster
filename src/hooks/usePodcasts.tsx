@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import { LocalStorageKeys, getValue, setValue,isPodcastInLocalStorageValid } from "../utils/localStorageHelper";
+import {Podcast, parsePodcasts} from '../utils/Podcast'
 
 
 
 
-
-export const usePodcasts = () => {
+export const usePodcasts = () : Podcast[] => {
   
-  const [podcasts, setPodcasts] = useState([{}])
+  const [podcasts, setPodcasts] = useState([] as Podcast[])
   const URL = 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const usePodcasts = () => {
       
       if(isPodcastInLocalStorageValid()){
         const podcastsStored = getValue(LocalStorageKeys.Podcasts)
-        return podcastsStored
+        setPodcasts(podcastsStored as Podcast[]) 
       }
       
       try{
@@ -24,8 +24,8 @@ export const usePodcasts = () => {
         const newPodcasts = await response.json();
         const newPodcastsParsed = newPodcasts.feed.entry
 
-        setValue(LocalStorageKeys.Podcasts, newPodcastsParsed)
-        setPodcasts(getValue(LocalStorageKeys.Podcasts))
+        setValue(LocalStorageKeys.Podcasts, parsePodcasts(newPodcastsParsed))
+        setPodcasts(getValue(LocalStorageKeys.Podcasts) as Podcast[])
         return(getValue(LocalStorageKeys.Podcasts))
 
       }catch(error){
@@ -37,3 +37,5 @@ export const usePodcasts = () => {
 
 return podcasts
 }
+
+
