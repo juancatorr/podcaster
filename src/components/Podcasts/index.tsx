@@ -1,16 +1,28 @@
 import React from "react";
 import { usePodcasts } from "../../hooks/usePodcasts";
+import { PodcastItem } from "../PodcastItem";
+import { Podcast } from "../../utils/Podcast";
 
-interface PodcastsProps {
-  id?: string;
-}
 
-export const Podcasts = ({ id = '' }: PodcastsProps) => {
 
-  const podcasts = usePodcasts()
-  console.log("🚀 ~ file: index.tsx:11 ~ Podcasts ~ podcasts:", podcasts)
+export const Podcasts = () => {
 
-  return (<div className="text-3xl font-bold underline bg-primary-300" >{`Podcasts🥩 ${id}`}</div>)
+  const podcasts: Podcast[] = usePodcasts()
+
+  return (
+    <div className=" flex flex-col items-center w-full gap-4 font-chakra">
+        <div className="bg-primary-100 text-2xl font-bold w-full">Podcasts</div>
+        <div className="bg-primary-200 w-full" >filters</div>
+        <div className="flex flex-row">
+          <div className="grid gap-x-5 gap-y-16 grid-cols-2 sm:grid-cols-4 ">
+            {
+            podcasts && podcasts.map((podcast )=>
+            <PodcastItem key={`podCast_${podcast.id}`}  podcast={podcast}/>
+            )}
+          </div>
+          </div>
+    </div>
+  )
 }
 
 
