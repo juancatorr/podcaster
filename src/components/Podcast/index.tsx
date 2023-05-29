@@ -12,6 +12,7 @@ export const Podcast = () => {
   const {podcastId} = useParams()
   const [episodes, setEpisodes] = useState()
   const [selectedPodcast, setSelectedPodcast] = useState({} as PodcastInterface)
+  const {episodeId} = useParams()
   
   useEffect(() => {
   const podcast: PodcastInterface = podcasts.find((podcast) => podcast.id === podcastId) as PodcastInterface
@@ -39,12 +40,15 @@ setSelectedPodcast(podcast)
         {selectedPodcast&&<PodcastItem podcast={selectedPodcast} isShortVersion={false}/>}
       </div>
       <div className="w-5/12 flex justify-start flex-col">
+      {episodeId? <Outlet/>:<>
         <div className='flex flex-col justify-center pl-2 items-start w-full text-lg font-bold border shadow-md h-9 bg-zinc-50 rounded-sm mb-4'>
           {`Episodes: ${episodes?.resultCount}`}
         </div>
         <div className="shadow-md">
           {episodes && <Episodes episodes={episodes.results}/>}
         </div>
+      </>
+      }
       </div>
     </div>
   </div>
