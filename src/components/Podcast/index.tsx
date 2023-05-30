@@ -5,6 +5,7 @@ import { Podcast as PodcastInterface} from "../../utils/Podcast";
 import { PodcastItem } from "../PodcastItem";
 import { Header } from "../Header";
 import { Episodes } from "../Episodes";
+import {PodcastContext} from "../../utils/PodcastContext"
 
 export const Podcast = () => {
 
@@ -32,6 +33,8 @@ setSelectedPodcast(podcast)
   }, [podcastId,podcasts])
   
 
+
+
   return (
   <div className="font-chakra">
     <Header/>
@@ -40,7 +43,8 @@ setSelectedPodcast(podcast)
         {selectedPodcast&&<PodcastItem podcast={selectedPodcast} isShortVersion={false}/>}
       </div>
       <div className="w-5/12 flex justify-start flex-col">
-      {episodeId? <Outlet/>:<>
+        <PodcastContext.Provider value={episodes?.results}>
+          {episodeId? <Outlet/>:<>
         <div className='flex flex-col justify-center pl-2 items-start w-full text-lg font-bold border shadow-md h-9 bg-zinc-50 rounded-sm mb-4'>
           {`Episodes: ${episodes?.resultCount}`}
         </div>
@@ -49,6 +53,7 @@ setSelectedPodcast(podcast)
         </div>
       </>
       }
+      </PodcastContext.Provider>
       </div>
     </div>
   </div>
