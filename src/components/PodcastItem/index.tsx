@@ -26,7 +26,7 @@ return (
     <p className="text-sm italic">{`by: ${podcast.author}`}</p>
     <hr className="w-full my-2"/>
     <h2 className="text-xs font-bold">Description:</h2>
-    <p className="text-xs italic">{podcast.summary}</p>
+    <p className="text-xs italic break-all text-justify">{podcast.summary}</p>
    </div>
 </div>
 );
