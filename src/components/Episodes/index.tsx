@@ -36,7 +36,6 @@ const formatDate = (date) => {
       <hr className="col-span-8 border-zinc-200 "/>
       
       {episodes.map((episode,index ) => {
-        console.log("🚀 ~ file: index.tsx:56 ~ {episodes.map ~ episode:", episode)
         return(
         <>
         <div key={`col_one_${index}`} className="col-span-5">

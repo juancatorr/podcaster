@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { Podcast } from "../../utils/Podcast";
 interface PodcastItemProps {
   podcast: Podcast;
@@ -19,11 +20,15 @@ export const PodcastItem = ({podcast,isShortVersion=true}:PodcastItemProps ) => 
 }
 return (
   <div className="w-60 flex flex-col bg-zinc-50 shadow-md rounded-sm p-5 text-center items-center border">
+  <Link to={`/podcast/${podcast.id}`}>
   <img className="w-36 h-36 rounded-sm" src={podcast.image} alt={podcast.title}></img>  
+  </Link>
    <hr className="w-full my-2"/>
   <div className="flex flex-col items-start text-start">
+  <Link to={`/podcast/${podcast.id}`}>
     <h1 className="text-sm font-bold" >{`${podcast.name}`}</h1>
     <p className="text-sm italic">{`by: ${podcast.author}`}</p>
+  </Link>
     <hr className="w-full my-2"/>
     <h2 className="text-xs font-bold">Description:</h2>
     <p className="text-xs italic break-all text-justify">{podcast.summary}</p>
