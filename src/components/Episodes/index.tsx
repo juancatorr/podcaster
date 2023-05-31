@@ -23,7 +23,7 @@ const formatDate = (date) => {
 }
 
   return (
-    <div className="grid grid-cols-8 p-5">
+    <div className="grid grid-cols-8 p-5" key={`episode_${podcastId}`}>
       <div className="col-span-5">
         <div className=" p-2 font-semibold">Title</div>
       </div>
@@ -34,9 +34,8 @@ const formatDate = (date) => {
         <div className=" p-2 font-semibold text-right">Duration</div>
       </div>
       <hr className="col-span-8 border-zinc-200 "/>
-      
-      {episodes.map((episode,index ) => {
-        
+      {
+      episodes.map((episode,index ) => {
         return(
         <>
         <div key={`col_one_${index}`} className="col-span-5">
@@ -52,8 +51,12 @@ const formatDate = (date) => {
         </div>
         <hr key={`line_${index}`} className="col-span-8 border-zinc-200"/>
       </>
-    )
-    })}     
+      )
+      }
+      )
+      }    
     </div>
+
+    
   )
 }

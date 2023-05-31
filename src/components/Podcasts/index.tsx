@@ -39,7 +39,7 @@ export const Podcasts = () => {
           <div className="grid gap-x-9 gap-y-16 grid-cols-2 sm:grid-cols-4 ">
             {
             podcastsFiltered && podcastsFiltered.map((podcast )=>
-            <Link className=" cursor-pointer" to={`/podcast/${podcast.id}`}>
+            <Link key={`link_${podcast.id}`} className=" cursor-pointer" to={`/podcast/${podcast.id}`}>
               <PodcastItem key={`podCast_${podcast.id}`}  podcast={podcast}/>
               </Link>
             )}
