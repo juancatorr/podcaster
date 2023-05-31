@@ -21,7 +21,6 @@ export const Episode = () => {
   }, [episodes,episodeId,podcastId,setEpisodePodcastId])
   
   
-  console.log("🚀 ~ file: index.tsx:15 ~ Episode ~ selectedEpisode:", selectedEpisode)
   return (
     <div className=" bg-zinc-50 rounded-sm p-4 shadow-md">
       <div className="text-xl font-bold text-ellipsis overflow-hidden whitespace-nowrap my-2">{selectedEpisode?.name}</div>

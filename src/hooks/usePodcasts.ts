@@ -9,10 +9,12 @@ import { Podcast, parsePodcasts } from "../utils/Podcast";
 
 export const usePodcasts = (): Podcast[] => {
   const [podcasts, setPodcasts] = useState([] as Podcast[]);
-  const URL =
-    "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
-
   useEffect(() => {
+    const URL_PODCAST =
+      "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
+    const URL = `https://api.allorigins.win/get?url=${encodeURIComponent(
+      URL_PODCAST
+    )}`;
     const fetchPodcasts = async () => {
       if (isDataInLocalStorageValid(LocalStorageKeys.Podcasts)) {
         const podcastsStored = getValue(LocalStorageKeys.Podcasts);
@@ -21,7 +23,7 @@ export const usePodcasts = (): Podcast[] => {
         try {
           const response = await fetch(URL);
           const newPodcasts = await response.json();
-          const newPodcastsParsed = newPodcasts.feed.entry;
+          const newPodcastsParsed = JSON.parse(newPodcasts.contents).feed.entry;
 
           setValue(LocalStorageKeys.Podcasts, parsePodcasts(newPodcastsParsed));
           setPodcasts(getValue(LocalStorageKeys.Podcasts) as Podcast[]);

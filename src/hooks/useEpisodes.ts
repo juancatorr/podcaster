@@ -17,14 +17,17 @@ export const useEpisodes = () => {
       } else {
         try {
           const URL_DETAILS = `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
-          const response = await fetch(URL_DETAILS);
-          const episodes = await response.json();
-          console.log(
-            "🚀 ~ file: useEpisodes.ts:22 ~ fetchEpisodes ~ episodes:",
-            episodes
-          );
+          const URL = `https://api.allorigins.win/get?url=${encodeURIComponent(
+            URL_DETAILS
+          )}`;
 
-          setValue(podcastId, parseEpisodes(episodes.results));
+          const response = await fetch(URL);
+          const episodes = await response.json();
+
+          setValue(
+            podcastId,
+            parseEpisodes(JSON.parse(episodes.contents).results)
+          );
           setEpisodes(getValue(podcastId) as Episode[]);
         } catch (error) {
           console.log(error);
