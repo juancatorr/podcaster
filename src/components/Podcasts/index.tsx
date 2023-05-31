@@ -15,17 +15,18 @@ export const Podcasts = () => {
   useEffect(() => {
       setPodcastsFiltered(podcasts)
     }, [podcasts])
-
-  const filterPodcasts = (target: EventTarget | null) => {
-
-    const input = target as HTMLInputElement
-    const podcastsFiltered = podcasts.filter((podcast) => podcast.title.toLowerCase().includes(input.value.toLowerCase()) || podcast.author.toLowerCase().includes(input.value.toLowerCase()) )
-    setPodcastsFiltered(podcastsFiltered)
-  }
-
+    
+    const filterPodcasts = (target: EventTarget | null) => {
+      
+      const input = target as HTMLInputElement
+      const podcastsFiltered = podcasts.filter((podcast) => podcast.title.toLowerCase().includes(input.value.toLowerCase()) || podcast.author.toLowerCase().includes(input.value.toLowerCase()) )
+      setPodcastsFiltered(podcastsFiltered)
+    }
+    
+ 
   return (
     <div className="flex flex-col items-center w-full gap-4 font-chakra">
-        <Header/>
+        <Header isHidden={podcasts.length>0}/>
         <div className=" flex flex-row items-center justify-end w-7/12" >
           <div className="bg-primary-300 rounded-lg text-white px-1 font-medium h-6 mr-4">
             {podcastsFiltered.length}

@@ -22,7 +22,7 @@ export const Podcast = () => {
 
   return (
   <div className="font-chakra">
-    <Header/>
+    <Header isHidden={episodes.length>0}/>
     <div className="flex flex-row w-full justify-center mt-10 ">
       <div className=" w-2/12 flex}">
         {selectedPodcast&&<PodcastItem podcast={selectedPodcast} isShortVersion={false}/>}
@@ -30,7 +30,7 @@ export const Podcast = () => {
       <div className="w-5/12 flex justify-start flex-col">
           {episodeId? <Outlet/>:<>
         <div className='flex flex-col justify-center pl-2 items-start w-full text-lg font-bold border shadow-md h-9 bg-zinc-50 rounded-sm mb-4'>
-          {`Episodes: ${episodes?.length}`}
+          {`Episodes: ${episodes.length}`}
         </div>
         <div className="shadow-md">
           {episodes && <Episodes episodes={episodes}/>}
