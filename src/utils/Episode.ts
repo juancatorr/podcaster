@@ -4,7 +4,7 @@ export interface Episode {
   description: string;
   url: string;
   releaseDate: string;
-  trackTime: number;
+  duration: number;
 }
 
 export const parseEpisodes = (episodes): Episode[] => {

@@ -12,7 +12,7 @@ export const useEpisodes = () => {
   useEffect(() => {
     const fetchEpisodes = async () => {
       if (isDataInLocalStorageValid(podcastId)) {
-        const episodesStored = getValue(podcastId);
+        const episodesStored = getValue(podcastId) as Episode[];
         setEpisodes(episodesStored);
       } else {
         try {

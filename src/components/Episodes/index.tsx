@@ -1,19 +1,24 @@
 import React from "react";
 import { useParams,Link } from "react-router-dom";
+import { Episode } from "../../utils/Episode";
 
-export const Episodes = ({episodes})=>{
+interface EpisodesProps {
+  episodes: Episode[];
+}
+
+export const Episodes = ({episodes} : EpisodesProps )=>{
 
   const {podcastId} = useParams()
 
 
-const formatTime = (time) => {
+const formatTime = (time:number) => {
   const minutes = Math.floor(time / 60000);
   const seconds = ((time % 60000) / 1000).toFixed(0);
   return `${minutes}:${Number(seconds) < 10 ? '0' : ''}${seconds}`;
 }
 
 
-const formatDate = (date) => {
+const formatDate = (date : string) => {
 
   const dateObject = new Date(date)
   const day = dateObject.getDate()
