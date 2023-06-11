@@ -9,25 +9,25 @@ import './index.css'
 
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Podcasts/>,
-  },
-  {
-    path:'/podcast/:podcastId',
-    element:<Podcast/>,
-    children:[
-      {
-        path:'/podcast/:podcastId/episode/:episodeId',
-        element:<Episode/>
-      }
-    ]
-  }
+	{
+		path: '/',
+		element: <Podcasts/>,
+	},
+	{
+		path:'/podcast/:podcastId',
+		element:<Podcast/>,
+		children:[
+			{
+				path:'/podcast/:podcastId/episode/:episodeId',
+				element:<Episode/>
+			}
+		]
+	}
 ]
 )
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-<RouterProvider router={router}/>
-    </React.StrictMode>,
+	<React.StrictMode>
+		<RouterProvider router={router}/>
+	</React.StrictMode>,
 )
